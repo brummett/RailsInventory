@@ -1,0 +1,19 @@
+<%= form_for :item, url: items_path do |f| %>
+    <p>
+        <%= f.label :Name %> <%= f.text_field :name %>
+        <br>
+        <%= f.label :SKU %> <%= f.text_field :sku %>
+        <br>
+        <%= f.label :Barcode %> <%= f.text_field :barcode %>
+        <br>
+        <%= f.label :Cost_cents %> <%= f.text_field :cost_cents %>
+        <br>
+        <%= f.label :Price_cents %> <%= f.text_field :price_cents %>
+        <br>
+        <%= f.label :Description %> <%= f.text_area :description %>
+        <br>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>

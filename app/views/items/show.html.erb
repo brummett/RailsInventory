@@ -1,0 +1,16 @@
+<p>
+    <strong>Name:</strong>
+    <%= @item.name %>
+</p>
+
+<p>
+    <dl>
+        <dt>SKU</dt><dd><%= @item.sku %></dd>
+        <dt>Barcode</dt><dd><%= @item.barcode %></dd>
+        <dt>Cost cents</dt><dd><%= @item.cost_cents %></dd>
+        <dt>Price cents</dt><dd><%= @item.price_cents %></dd>
+    </dl>
+</p>
+<p>
+    <%= @item.description %>
+</p>
