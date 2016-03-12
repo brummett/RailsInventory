@@ -1,0 +1,30 @@
+<%= form_for @warehouse do |f| %>
+    <% if @warehouse.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+                <%= pluralize(@warehouse.errors.count, 'error') %> prohibited this warehouse from saving
+            </h2>
+            <ul>
+                <% @warehouse.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <p>
+        <%= f.label :Name %> <%= f.text_field :name %>
+        <br>
+        <%= f.label :email %> <%= f.text_field :email %>
+        <br>
+        <%= f.label :Phone %> <%= f.text_field :phonenumber %>
+        <br>
+        <%= f.label :Address %> <%= f.text_area :address %>
+        <br>
+        <%= f.label :Notes %> <%= f.text_area :notes %>
+    </p>
+
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>

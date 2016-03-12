@@ -1,0 +1,17 @@
+<p>
+    <strong>Name:</strong>
+    <%= @warehouse.name %>
+</p>
+
+<p>
+    <dl>
+        <dt>Phone</dt><dd><%= @warehouse.phonenumber %></dd>
+        <dt>Email</dt><dd><%= @warehouse.email %></dd>
+        <dt>Address</dt><dd><%= @warehouse.address %></dd>
+    </dl>
+</p>
+<p>
+    <%= @warehouse.notes %>
+</p>
+
+<%= link_to 'All warehouses', warehouses_path %>

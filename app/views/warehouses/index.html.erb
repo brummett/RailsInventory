@@ -1,0 +1,23 @@
+<h1>Warehouses</h1>
+<%= link_to 'Create new warehouse', new_warehouse_path %>
+<table>
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>email</th>
+        <th>phone</th>
+        <th></th>
+    </tr>
+    <% @warehouses.each do |warehouse| %>
+        <tr>
+            <td><%= link_to 'Edit', edit_warehouse_path(warehouse) %></td>
+            <td><%= link_to warehouse.name, warehouse_path(warehouse) %></td>
+            <td><%= warehouse.email %></td>
+            <td><%= warehouse.phonenumber %></td>
+            <td><%= link_to 'Delete', warehouse_path(warehouse),
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end %>
+</table>
+
