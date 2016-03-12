@@ -1,0 +1,19 @@
+<p>
+    <strong>Name:</strong>
+    <%= @customer.name %>
+</p>
+
+<p>
+    <dl>
+        <dt>Phone</dt><dd><%= @customer.phone_number %></dd>
+        <dt>Alt Phone</dt><dd><%= @customer.alternate_phone_number %></dd>
+        <dt>Email</dt><dd><%= @customer.email %></dd>
+        <dt>Address</dt><dd><%= @customer.address %></dd>
+        <dt>Is taxable</dt><dd><%= @customer.is_taxable %>
+    </dl>
+</p>
+<p>
+    <%= @customer.notes %>
+</p>
+
+<%= link_to 'All customers', customers_path %>

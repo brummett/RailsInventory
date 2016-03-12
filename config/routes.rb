@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
     resources :items
     resources :warehouses
+    resources :customers
 
   # You can have the root of your site routed with "root"
   root 'home#index'
