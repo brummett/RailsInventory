@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312180959) do
+ActiveRecord::Schema.define(version: 20160312190403) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -23,5 +23,7 @@ ActiveRecord::Schema.define(version: 20160312180959) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "items", ["sku"], name: "index_items_on_sku", unique: true
 
 end
