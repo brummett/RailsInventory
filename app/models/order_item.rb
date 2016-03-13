@@ -1,4 +1,6 @@
 class OrderItem < ActiveRecord::Base
+  validates :barcode, presence: true,
+                      length: { minimum: 1 }
   belongs_to :order
   belongs_to :item
 

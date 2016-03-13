@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160312234130) do
   create_table "order_items", force: :cascade do |t|
     t.integer  "cost_cents", default: 0, null: false
     t.integer  "count",                  null: false
+    t.string   "barcode",                null: false
     t.integer  "order_id"
     t.integer  "item_id"
     t.datetime "created_at",             null: false
