@@ -12,13 +12,13 @@
         </div>
     <% end %>
 
-    <%= f.label :Date %> <%= f.text_field :created_at %>
+    <%= f.label :created_at, 'Date' %> <%= f.text_field :created_at %>
     <br>
-    <%= f.label 'Order number' %> <%= f.text_field :order_number %>
+    <%= f.label :order_number, 'Order number' %> <%= f.text_field :order_number %>
     <br>
-    <%= f.label @order.order_form_customer_label %> <%= f.text_field :customer_name %>
+    <%= f.label :customer_name, @order.order_form_customer_label %> <%= f.text_field :customer_name %>
     <br>
-    <%= f.label @order.order_form_warehouse_label %>
+    <%= f.label :warehouse, @order.order_form_warehouse_label %>
         <%= select_tag :warehouse, options_from_collection_for_select(Warehouse.all, 'id', 'name') %>
     <br>
     <%= f.submit 'All done' %>
