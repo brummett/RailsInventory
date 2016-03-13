@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  has_many :order_items
+  has_many :order_items, inverse_of: :order
   belongs_to :customer
   belongs_to :warehouse
 

@@ -1,12 +1,8 @@
 class OrderItem < ActiveRecord::Base
   validates :barcode, presence: true,
                       length: { minimum: 1 }
-  belongs_to :order
+  belongs_to :order, inverse_of: :order_items
   belongs_to :item
-
-    def barcode
-        self.item.barcode if self.item
-    end
 
     def sku
         self.item.sku if self.item

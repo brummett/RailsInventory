@@ -45,9 +45,9 @@ class OrdersController < ApplicationController
         else
             item = Item.find_by(barcode: params[:barcode])
             if item
-                order_item = OrderItem.new(order: @order, item: item, count: 1)
+                order_item = @order.order_items.new(barcode: params[:barcode], item_id: item.id, count: 1)
             else
-                order_item = OrderItem.new(order: @order, count: 1)
+                order_item = @order.order_items.new(barcode: params[:barcode], count: 1)
             end
         end
         order_item.save
