@@ -41,11 +41,12 @@ ActiveRecord::Schema.define(version: 20160312234130) do
   add_index "items", ["sku"], name: "index_items_on_sku", unique: true
 
   create_table "order_items", force: :cascade do |t|
-    t.integer  "cost_cents"
+    t.integer  "cost_cents", default: 0, null: false
+    t.integer  "count",                  null: false
     t.integer  "order_id"
     t.integer  "item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "order_items", ["item_id"], name: "index_order_items_on_item_id"
