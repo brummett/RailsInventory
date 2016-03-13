@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20160312234130) do
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
 
   create_table "orders", force: :cascade do |t|
-    t.string   "order_number", null: false
-    t.string   "type",         null: false
+    t.string   "order_number"
+    t.string   "order_type"
     t.integer  "customer_id"
     t.integer  "warehouse_id"
     t.datetime "created_at",   null: false
