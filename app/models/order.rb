@@ -4,8 +4,8 @@ class Order < ActiveRecord::Base
   belongs_to :warehouse
 
     def customer_name
-        if @customer
-            @customer.name
+        if customer
+            customer.name
         else
             ''
         end
