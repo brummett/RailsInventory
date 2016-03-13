@@ -9,9 +9,9 @@ Rails.application.routes.draw do
     resources :customers
 
     get 'orders/new_receive' => 'orders#new_receive'
-    post 'orders/:id/add_item' => 'orders#add_item'
+    post 'orders/:id/add_item' => 'orders#add_item', as: 'add_item_to_order'
     resources :orders, only: [:index, :create, :show, :edit, :destroy] do
-        resources :order_items, only: [:new, :update, :destroy]
+        resources :order_items, only: [:update, :destroy]
     end
 
   # You can have the root of your site routed with "root"

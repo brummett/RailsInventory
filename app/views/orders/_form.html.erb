@@ -22,24 +22,30 @@
         <%= select_tag :warehouse, options_from_collection_for_select(Warehouse.all, 'id', 'name') %>
     <br>
     <%= f.submit 'All done' %>
-
-    <table>
-        <tr><th></th>
-            <th><%= @order.order_form_item_cost_label %></th>
-            <th>Count</th>
-            <th>Name</th>
-            <th>SKU</th>
-            <th>Barcode</th>
-        </tr>
-        <% @order.order_items.each do |item| %>
-            <tr>
-                <td></td>
-                <td><%= item.cost_cents %></td>
-                <td><%= item.count %></td>
-                <td><%= item.name %></td>
-                <td><%= item.sku %></td>
-                <td><%= item.barcode %></td>
-            </tr>
-        <% end %>
-    </table>
 <% end %>
+
+<%= form_tag add_item_to_order_path(@order), method: 'post' do %>
+    <%= label_tag :barcode, 'Barcode' %>
+    <%= text_field_tag(:barcode) %>
+    <%= submit_tag 'Scan' %>
+<% end %>
+
+<table>
+    <tr><th></th>
+        <th><%= @order.order_form_item_cost_label %></th>
+        <th>Count</th>
+        <th>Name</th>
+        <th>SKU</th>
+        <th>Barcode</th>
+    </tr>
+    <% @order.order_items.each do |item| %>
+        <tr>
+            <td></td>
+            <td><%= item.cost_cents %></td>
+            <td><%= item.count %></td>
+            <td><%= item.name %></td>
+            <td><%= item.sku %></td>
+            <td><%= item.barcode %></td>
+        </tr>
+    <% end %>
+</table>

@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
     def new_receive
         @order = Order.new(order_type: 'receive')
         @order.save # need to save here so @order gets an ID - order_number, etc are as yet null
+        redirect_to edit_order_path(@order)
     end
 
     def edit
@@ -30,6 +31,27 @@ class OrdersController < ApplicationController
         @order.destroy
 
         redirect_to orders_path
+    end
+
+    def add_item
+        @order = Order.find(params[:id])
+        for i in @order.order_items
+            if i.barcode == params[:barcode]
+                order_item = i
+            end
+        end
+        if order_item
+            order_item.inc
+        else
+            item = Item.find_by(barcode: params[:barcode])
+            if item
+                order_item = OrderItem.new(order: @order, item: item, count: 1)
+            else
+                order_item = OrderItem.new(order: @order, count: 1)
+            end
+        end
+        order_item.save
+        redirect_to edit_order_path(@order)
     end
 
     private def order_params
