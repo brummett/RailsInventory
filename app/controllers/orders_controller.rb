@@ -8,13 +8,28 @@ class OrdersController < ApplicationController
     end
 
     def new_receive
-        @order = Order.new(order_type: 'receive')
-        @order.save # need to save here so @order gets an ID - order_number, etc are as yet null
+        @order = Order.create(order_type: 'receive')
         redirect_to edit_order_path(@order)
     end
 
     def edit
         @order = Order.find(params[:id])
+    end
+
+    def update
+        @order = Order.find(params[:id])
+
+        resolve_customer_id_from_name
+
+        @order.update(order_params)
+
+        @order.validate_order_is_complete
+        if @order.errors.empty?
+            @order.save
+            redirect_to orders_path
+        else
+            render 'edit'
+        end
     end
 
     def create
@@ -54,7 +69,15 @@ class OrdersController < ApplicationController
         redirect_to edit_order_path(@order)
     end
 
+    private def resolve_customer_id_from_name
+        unless params[:customer_name].blank?
+            names = params[:customer_name].split(' ', 2)
+            customer = Customer.find_by(first_name: names[0], last_name: names[1])
+            @order.customer_id = customer.id if customer
+        end
+    end
+
     private def order_params
-        params.require(:order).permit(:order_number, :type)
+        params.require(:order).permit(:created_at, :order_number, :warehouse_id)
     end
 end

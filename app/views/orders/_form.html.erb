@@ -16,10 +16,10 @@
     <br>
     <%= f.label :order_number, 'Order number' %> <%= f.text_field :order_number %>
     <br>
-    <%= f.label :customer_name, @order.order_form_customer_label %> <%= f.text_field :customer_name %>
+    <%= label_tag 'customer_name', @order.order_form_customer_label %> <%= text_field_tag 'customer_name' %>
     <br>
-    <%= f.label :warehouse, @order.order_form_warehouse_label %>
-        <%= select_tag :warehouse, options_from_collection_for_select(Warehouse.all, 'id', 'name') %>
+    <%= f.label :warehouse_id, @order.order_form_warehouse_label %>
+        <%= f.select :warehouse_id, options_from_collection_for_select(Warehouse.all, 'id', 'name') %>
     <br>
     <%= f.submit 'All done' %>
 <% end %>
