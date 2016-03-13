@@ -9,6 +9,7 @@ class ItemsController < ApplicationController
 
     def new
         @item = Item.new
+        @item.barcode ||= params[:barcode]
     end
 
     def edit
@@ -18,7 +19,16 @@ class ItemsController < ApplicationController
     def create
         @item = Item.new(item_params)
         if @item.save
-            redirect_to @item items_path
+            if params[:order_id] && params[:order_id].length != 0
+                # Created a previously-unknown item from a create-order form
+                # update the order_item with the matching barcode to point to us
+                puts "looking up order_item with order_id #{ params[:order_id] } barcode #{ @item.barcode }"
+                order_item = OrderItem.find_by(order_id: params[:order_id], barcode: @item.barcode)
+                order_item.update(item_id: @item.id)
+                redirect_to edit_order_path order_item.order
+            else
+                redirect_to items_path
+            end
         else
             render 'new'
         end

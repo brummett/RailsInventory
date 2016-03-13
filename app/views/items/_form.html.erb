@@ -24,6 +24,7 @@
         <%= f.label :price_cents, 'Price cents' %> <%= f.text_field :price_cents %>
         <br>
         <%= f.label :description, 'Description' %> <%= f.text_area :description %>
+        <%= hidden_field_tag :order_id, params[:order_id] %>
     </p>
 
     <p>
