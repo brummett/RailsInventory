@@ -12,6 +12,11 @@ class OrdersController < ApplicationController
         redirect_to edit_order_path(@order)
     end
 
+    def new_sale
+        @order = Order.create(order_type: 'sale')
+        redirect_to edit_order_path(@order)
+    end
+
     def edit
         @order = Order.find(params[:id])
     end

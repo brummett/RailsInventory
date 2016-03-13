@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :customers
 
     get 'orders/new_receive' => 'orders#new_receive'
+    get 'orders/new_sale' => 'orders#new_sale'
     post 'orders/:id/add_item' => 'orders#add_item', as: 'add_item_to_order'
     resources :orders, only: [:index, :create, :update, :edit, :destroy] do
         resources :order_items, only: [:update, :destroy]
