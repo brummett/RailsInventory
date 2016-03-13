@@ -8,6 +8,12 @@ Rails.application.routes.draw do
     resources :warehouses
     resources :customers
 
+    get 'orders/new_receive' => 'orders#new_receive'
+    post 'orders/:id/add_item' => 'orders#add_item'
+    resources :orders, only: [:index, :create, :show, :edit, :destroy] do
+        resources :order_items, only: [:new, :update, :destroy]
+    end
+
   # You can have the root of your site routed with "root"
   root 'home#index'
 
